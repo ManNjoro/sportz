@@ -22,7 +22,11 @@ export function attachWebSocketServer(server){
     server.on('upgrade', async (req, socket, head) => {
         const {pathname} = new URL(req.url, `http://${req.headers.host}`)
 
-        if (pathname !== '/ws') return;
+        if (pathname !== '/ws') {
+            socket.write('HTTP/1.1 404 Not Found\r\n\r\n');
+            socket.destroy();
+            return;
+        }
         if (wsArcjet) {
             try {
                 const decision = await wsArcjet.protect(req);
@@ -69,6 +73,7 @@ export function attachWebSocketServer(server){
     }, 30000)
 
     server.on('close', () => {
+        clearInterval(interval);
         wss.clients.forEach(ws => ws.terminate());
         wss.close();
     });
