@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   res.send('Hello, welcome to the Sportz server!');
 });
 
-// app.use(securityMiddleware())
+app.use(securityMiddleware())
 
 app.use('/matches', matchRouter)
 app.use('/matches/:id/commentary', commentaryRouter)
