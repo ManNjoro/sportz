@@ -23,6 +23,7 @@ function unsubscribe(socket, matchId){
 }
 
 function cleanupSubscriptions(socket){
+    if(!socket.subscriptions) return;
     for (const matchId of socket.subscriptions){
         unsubscribe(socket, matchId);
     }
