@@ -7,7 +7,7 @@
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "node src/db/migrate.js"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +27,6 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.18.1"
+    "drizzle-kit": "^0.30.4"
   }
 }
